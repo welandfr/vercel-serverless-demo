@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
 
     if (req.method == "POST") {
-        res.status(200).json({status: "created new bike"});
+        res.status(200).json({status: `Created new bike: ${req.body.brand}`});
     }
 
     if (req.method == "GET") { 
@@ -12,7 +12,6 @@ export default async function handler(req, res) {
         ]);
     }
 
-    if (req.method == "DELETE") {
-        res.status(200).json({status: "deleted bike"});
-    }
+    
+
 }

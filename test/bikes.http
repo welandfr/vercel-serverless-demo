@@ -1,0 +1,22 @@
+@API_URL = http://localhost:3000/api
+
+###
+
+GET {{API_URL}}/bikes
+
+###
+GET {{API_URL}}/bikes/123
+
+###
+
+POST {{API_URL}}/bikes
+Content-Type: application/json
+
+{ 
+    "brand": "Helkama", 
+    "model": "Jopo", 
+    "price": 200 
+}
+
+###
+DELETE {{API_URL}}/bikes/123

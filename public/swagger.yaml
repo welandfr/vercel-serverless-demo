@@ -1,0 +1,74 @@
+openapi: 3.0.0
+info:
+  title: Bikes API
+  description: API for managing bikes
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/api
+  - url: https://vercel-serverless-demo-alpha.vercel.app/api
+paths:
+  /bikes:
+    get:
+      summary: Get all bikes
+      responses:
+        '200':
+          description: A list of bikes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bike'
+    post:
+      summary: Add a new bike
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Bike'
+      responses:
+        '201':
+          description: Bike created successfully
+  /bikes/{id}:
+    get:
+      summary: Get a bike by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A single bike
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bike'
+        '404':
+          description: Bike not found
+    delete:
+      summary: Delete a bike by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Bike deleted successfully
+        '404':
+          description: Bike not found
+components:
+  schemas:
+    Bike:
+      type: object
+      properties:
+        brand:
+          type: string
+        model:
+          type: string
+        price:
+          type: number
